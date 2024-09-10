@@ -6,11 +6,11 @@ from human_eval.evaluation import evaluate_functional_correctness
 
 
 def entry_point(
-    sample_file: str = '/home/chenkaiyuan/SIPF/dataset/sample_iter0_gemma-2b_gemma_mbpp.jsonl',
+    sample_file: str = '',
     k: str = "1,3,6,10,20,30,60,100",
     n_workers: int = 4,
     timeout: float = 3.0,
-    problem_file: str = '/home/chenkaiyuan/SIPF/dataset/mbpp-trans-train_test.jsonl',
+    problem_file: str = '',
     problem_type: str = 'mbpp'
 ):
     """

@@ -178,10 +178,10 @@ def preprocess_function_prm_code_train(sample, tokenizer):
         mcts_attention_mask += [1] * len(ans_attention_mask)
 
     model_input_ids = question_input_ids + answer_input_ids
-    # model_input_mask = [0] * len(question_mask) + answer_attention_mask[1:]
+    
     model_input_mask = question_mask + answer_attention_mask
     model_label_ids = [-100] * len(question_input_ids) + mcts_inputs_ids
-    # model_label_ids = question_input_ids + mcts_inputs_ids[1:]
+    
     
     return {'model_input_ids': model_input_ids, 'model_input_mask': model_input_mask, 'model_label_ids': model_label_ids, \
             'question_input_ids': question_input_ids, 'question_mask': question_mask, 'answer_input_ids': answer_input_ids, \
@@ -209,7 +209,7 @@ def preprocess_function_prm_code_pred(sample, tokenizer):
         step_pred_idx.append(len(answer_input_ids)-1)
 
     model_input_ids = question_input_ids + answer_input_ids
-    # model_input_mask = [0] * len(question_mask) + answer_attention_mask[1:]
+    
     model_input_mask = question_mask + answer_attention_mask
     
     return {'model_input_ids': model_input_ids, 'model_input_mask': model_input_mask, \

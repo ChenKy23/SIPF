@@ -62,7 +62,7 @@ def run_sft_train(args=None, dataset=None):
             torch_dtype=torch.bfloat16,
             device_map="auto",
         )
-        # model.config.pretraining_tp = 1 # for llama
+        # model.config.pretraining_tp = 1 # useful for llama
 
         tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
@@ -92,14 +92,13 @@ def run_sft_train(args=None, dataset=None):
                             "gate_proj", "up_proj", "down_proj",],
             # target_modules="all-linear",
             lora_alpha = args.lora_alpha,
-            lora_dropout = args.lora_dropout, # Supports any, but = 0 is optimized
-            bias = "none",    # Supports any, but = "none" is optimized
-            # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
+            lora_dropout = args.lora_dropout, 
+            bias = "none",    
             use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
             random_state = args.seed,
             max_seq_length = 1024,
-            use_rslora = False,  # We support rank stabilized LoRA
-            loftq_config = None, # And LoftQ
+            use_rslora = False,  
+            loftq_config = None, 
         )
 
         peft_config = None
@@ -107,8 +106,7 @@ def run_sft_train(args=None, dataset=None):
     if args.model_name in ['TinyLlama/TinyLlama_v1.1', 'microsoft/phi-1_5']:
        tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
-    
-    EOS_TOKEN = tokenizer.eos_token # Must add EOS_TOKEN
+    EOS_TOKEN = tokenizer.eos_token 
 
     dataset = dataset.map(formatting_prompts_func, batched = True)
 

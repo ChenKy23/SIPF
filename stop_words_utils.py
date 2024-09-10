@@ -38,7 +38,6 @@ class myStoppingCriteria(StoppingCriteria):
         
     @add_start_docstrings(STOPPING_CRITERIA_INPUTS_DOCSTRING)
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
-        # check the final {self.length} tokens
         input_batch_num = len(input_ids)
 
         search_idx = [idx for idx in range(input_batch_num) if idx not in self.stop_idx]

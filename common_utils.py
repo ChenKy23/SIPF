@@ -78,7 +78,7 @@ def check_equation(string):
 
 def reasoning_path_selection(equation_different_path, exist_match, new_path):
     pattern = r'<<([^>]*)>>'  
-    matches = re.findall(pattern, new_path)  # Find all matches
+    matches = re.findall(pattern, new_path)
     equation_flag = True
     add_fag = False
     for match in matches:

@@ -63,7 +63,7 @@ def run_orpo_align(args=None, dataset=None):
             torch_dtype=torch.bfloat16,
             device_map="auto",
         )
-        # model.config.pretraining_tp = 1
+        # model.config.pretraining_tp = 1 # useful for llama
 
         tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     
@@ -90,18 +90,18 @@ def run_orpo_align(args=None, dataset=None):
             target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
                             "gate_proj", "up_proj", "down_proj",],
             lora_alpha = args.lora_alpha,
-            lora_dropout = args.lora_dropout, # Supports any, but = 0 is optimized
-            bias = "none",    # Supports any, but = "none" is optimized
-            use_gradient_checkpointing = "unsloth", # True or "unsloth" for very long context
+            lora_dropout = args.lora_dropout, 
+            bias = "none",    
+            use_gradient_checkpointing = "unsloth", 
             random_state = args.seed,
             max_seq_length = args.max_seq_length,
-            use_rslora = False,  # We support rank stabilized LoRA
-            loftq_config = None, # And LoftQ
+            use_rslora = False,  
+            loftq_config = None, 
         )
 
         peft_config = None
 
-    EOS_TOKEN = tokenizer.eos_token # Must add EOS_TOKEN
+    EOS_TOKEN = tokenizer.eos_token
     if args.model_name in ['TinyLlama/TinyLlama_v1.1', 'microsoft/phi-1_5']:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
@@ -115,8 +115,8 @@ def run_orpo_align(args=None, dataset=None):
         seed=args.seed,
         data_seed=args.seed,
         output_dir=args.output_model_path,        
-        num_train_epochs=args.num_train_epochs,   # number of training epochs
-        per_device_train_batch_size=args.per_device_train_batch_size,        # batch size per device during training
+        num_train_epochs=args.num_train_epochs,   
+        per_device_train_batch_size=args.per_device_train_batch_size,        
         do_eval=False,
         gradient_accumulation_steps=args.gradient_accumulation_steps,        
         beta=args.beta,                           # reference weight
@@ -128,11 +128,11 @@ def run_orpo_align(args=None, dataset=None):
         lr_scheduler_type=args.lr_scheduler_type,   
         max_length=args.max_seq_length,
         max_prompt_length=args.prompt_length,
-        logging_steps=args.logging_steps,        # log steps
+        logging_steps=args.logging_steps,        
         save_strategy=args.save_strategy,
         fp16 = False,
         bf16 = True,
-        tf32 = True,                             # use tf32 precision
+        tf32 = True,                             
     )
 
     trainer = ORPOTrainer(
@@ -143,7 +143,7 @@ def run_orpo_align(args=None, dataset=None):
         tokenizer=tokenizer
     )
 
-    # start training, the model will be automatically saved to the output directory
+    # start training, the model will be saved to the output directory
     trainer.train()
 
 def run(args):

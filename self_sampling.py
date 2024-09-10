@@ -36,7 +36,7 @@ from human_eval.data import write_jsonl, read_problems
 
 def run_math_sample(args=None, dataset=None, iteration_idx = 1):
     def preprocess_function(sample):
-        # add prefix to the input for llm
+        # add prefix to the input for slm
         model_inputs = tokenizer([instruction_for_math.format(question, "") for question in sample['question']], truncation=False)
 
         if iteration_idx > 1:
@@ -85,13 +85,13 @@ def run_math_sample(args=None, dataset=None, iteration_idx = 1):
         print("is_bfloat16_supported:", is_bfloat16_supported())
 
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = args.model_checkpoint, # YOUR MODEL YOU USED FOR TRAINING
+            model_name = args.model_checkpoint,
             max_seq_length = 1024,
             dtype = None,
             load_in_4bit = False,
         )
 
-        FastLanguageModel.for_inference(model) # Enable native 2x faster inference
+        FastLanguageModel.for_inference(model) # 2x faster inference
 
     if args.model_name in ['TinyLlama/TinyLlama_v1.1', 'microsoft/phi-1_5']:
         tokenizer.pad_token = tokenizer.eos_token
@@ -251,7 +251,7 @@ def run_math_sample(args=None, dataset=None, iteration_idx = 1):
 
 def run_code_sample(args, dataset, iteration_idx = 1):
     def preprocess_function(sample):
-        # add prefix to the input for llm
+        # add prefix to the input for slm
         model_inputs = tokenizer([prompt+"\n" for prompt in sample['prompt']], truncation=False)
         
         model_inputs['prompt'] = [prompt+"\n" for prompt in sample['prompt']]
@@ -306,13 +306,13 @@ def run_code_sample(args, dataset, iteration_idx = 1):
         print("is_bfloat16_supported:", is_bfloat16_supported())
     else:
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = args.model_checkpoint, # YOUR MODEL YOU USED FOR TRAINING
+            model_name = args.model_checkpoint, 
             max_seq_length = 1024,
             dtype = None,
             load_in_4bit = False,
         )
 
-        FastLanguageModel.for_inference(model) # Enable native 2x faster inference
+        FastLanguageModel.for_inference(model) # 2x faster inference
 
     if args.model_name in ['TinyLlama/TinyLlama_v1.1', 'microsoft/phi-1_5']:
         tokenizer.pad_token = tokenizer.eos_token
