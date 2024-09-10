@@ -58,7 +58,7 @@ pip install -e .
 ## Additional Notes
 
 - Ensure your system meets the necessary hardware and software requirements for CUDA 12.1 and PyTorch 2.3.0.
-- The specific version of Unsloth is optional but recommended if you encounter compatibility issues.
+- The specific version of Unsloth is optional but recommended.
 - For further customization or troubleshooting, refer to the official documentation of the respective packages.
 
 ---
