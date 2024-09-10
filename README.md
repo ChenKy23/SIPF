@@ -1,8 +1,6 @@
 # SIPF
 The respository for **Self-Iterative Process Feedback for Small Language Models' Reasoning**
 
-Here's a `README.md` that includes all the setup steps you provided, in English:
-
 # Environment Setup
 
 This document outlines the steps required to set up the SIPF environment with specific CUDA and PyTorch versions, along with additional installation requirements.
