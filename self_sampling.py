@@ -483,7 +483,7 @@ def run(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="self sampling")
 
-    parser.add_argument("--sampling_dataset_pth", default='/home/chenkaiyuan/SIPF/save_res/sample_res_gemma-2b_gsm8k_math_iter1.json', help="dataset_test's path")
+    parser.add_argument("--sampling_dataset_pth", default='', help="dataset_test's path")
     parser.add_argument("--task_name", default='gsm8k', help="mbpp or gsm8k")
     parser.add_argument("--task_type", default='math', help="math or code")
     parser.add_argument("--iteration_idx", default=2, help="The idx of iteration")
@@ -495,7 +495,7 @@ if __name__ == '__main__':
     parser.add_argument('--sample_neg_num', default=4, help='This parameter becomes useless after the first iteration. (only for gsm8k)')
     parser.add_argument("--model_name", default='google/gemma-2b', help="model name")
     parser.add_argument("--seed", default=42, help="set seed")
-    parser.add_argument("--model_checkpoint", default='/home/chenkaiyuan/dpo_math/model/gemma-2b_gsm8k_sft/checkpoint-462', help="model checkpoint's path")
+    parser.add_argument("--model_checkpoint", default='', help="model checkpoint's path")
     parser.add_argument("--output_file_name", default="sample_res", help="output file's name")
     parser.add_argument("--output_dir", default="save_res", help="output file's dir")
 

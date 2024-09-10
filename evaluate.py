@@ -262,7 +262,7 @@ if __name__ == '__main__':
     parser.add_argument('--log_file_dir', type=str, default='./', help="log file's dir")
     parser.add_argument("--model_name", default='google/gemma-2b', help="model name")
     parser.add_argument("--seed", default=42, help="set seed")
-    parser.add_argument("--model_checkpoint", default='/home/chenkaiyuan/dpo_math/model/gemma-2b_gsm8k_orpo_iter3_b_1/checkpoint-17482', help="model checkpoint's path")
+    parser.add_argument("--model_checkpoint", default='./model', help="model checkpoint's path")
     parser.add_argument("--output_file_name", default="evaluate_res", help="output_file_name")
     parser.add_argument("--output_dir", default="save_res", help="output_dir")
     args = parser.parse_args()
