@@ -58,13 +58,13 @@ def run_math_evaluation(args=None, dataset_test=None):
     else:
         from unsloth import FastLanguageModel
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = model_path, # YOUR MODEL YOU USED FOR TRAINING
+            model_name = model_path, 
             max_seq_length = 1024,
             dtype = None,
             load_in_4bit = False,
         )
 
-        FastLanguageModel.for_inference(model) # Enable native 2x faster inference
+        FastLanguageModel.for_inference(model) # 2x faster inference
     
     if args.model_name in ['TinyLlama/TinyLlama_v1.1']:
         tokenizer.pad_token = tokenizer.eos_token
@@ -98,8 +98,8 @@ def run_math_evaluation(args=None, dataset_test=None):
                 otext = otext[in_prompt_len:].strip()
                 if args.method_type == 'cot':
                     otext = otext.split("Q:")[0].strip()
-                print(otext)
-                print("---------------------------")
+                # print(otext)
+                # print("---------------------------")
                 # fiter_output_texts.append(otext.split("### Answer:")[-1].strip())
                 fiter_output_texts.append(otext)
 
@@ -169,13 +169,13 @@ def run_code_evaluation(args=None, dataset_test=None):
     else:
         from unsloth import FastLanguageModel
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = model_path, # YOUR MODEL YOU USED FOR TRAINING
+            model_name = model_path, 
             max_seq_length = 1024,
             dtype = None,
             load_in_4bit = False,
         )
 
-        FastLanguageModel.for_inference(model) # Enable native 2x faster inference
+        FastLanguageModel.for_inference(model) # 2x faster inference
     
     stopping_criteria = None
     if args.model_name in ['microsoft/phi-1_5'] or args.method_type == 'cot':
