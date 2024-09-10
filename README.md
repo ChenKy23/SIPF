@@ -55,6 +55,3 @@ pip install -r requirements.txt
 ---
 
 This setup guide helps ensure that the SIPF environment is configured correctly for optimal performance with the specified dependencies.
-```
-
-Feel free to adjust or expand on any sections to better suit your project needs!
