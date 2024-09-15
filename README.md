@@ -1,5 +1,5 @@
 # SIPF
-The respository for **Self-Iterative Process Feedback for Small Language Models' Reasoning**
+The respository for **Learning to Reason via Self-Iterative Process Feedback for Small Language Models**
 
 # Environment Setup
 
