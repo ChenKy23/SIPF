@@ -172,7 +172,6 @@ if __name__ == '__main__':
     parser.add_argument("--iteration_idx", default=1, help="1, 2, 3, or other")
     parser.add_argument("--is_unsloth", default=True, help="whether use unsloth")
     parser.add_argument('--per_device_train_batch_size', type=int, default=2)
-    parser.add_argument('--sample_batch_size', type=int, default=20)
     parser.add_argument('--lr', type=float, default=8e-5)
     parser.add_argument('--beta', type=float, default=0.1)
     parser.add_argument('--max_grad_norm', type=float, default=0.3)

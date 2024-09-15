@@ -150,7 +150,7 @@ def run_sft_train(args=None, dataset=None):
 def run(args):
     data_train_pth = args.data_train_pth
 
-    set_seed(args.seed)
+    set_seed(args.seed)#
  
     dataset_train = load_dataset("json", data_files=data_train_pth, split="train")
 
@@ -168,7 +168,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="sft code")
 
     # Add your parameters 
-    parser.add_argument("--data_train_pth", default='./dataset/train_dataset_gsm8k_hn.json', help="dataset_train's path")
+    parser.add_argument("--data_train_pth", default='', help="dataset_train's path")
     parser.add_argument("--data_valid_pth", default='', help="dataset_test's path")
     parser.add_argument("--task_name", default='gsm8k', help="gsm8k or mbpp")
     parser.add_argument("--task_type", default='math', help="math or code")
